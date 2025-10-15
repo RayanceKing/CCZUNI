@@ -1,6 +1,6 @@
 use chrono::{Duration, NaiveDate, NaiveDateTime, NaiveTime, Utc};
 use icalendar::{Alarm, Calendar, Component, Event, EventLike, Trigger};
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Serialize}; // 确保 Serialize 在这里
 use std::{
     collections::HashMap, fs::read_to_string, future::Future, io::ErrorKind, path::Path,
     sync::LazyLock,
@@ -92,14 +92,14 @@ impl Schedule {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize)] // <-- 在这里添加 Serialize
 pub enum OddOrEven {
     Odd = 0,
     Even = 1,
     Each = 2,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize)] // <-- 在这里添加 Serialize
 pub struct RawCourse {
     pub course: String,
     pub teacher: String,

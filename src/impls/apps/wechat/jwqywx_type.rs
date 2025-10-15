@@ -1,13 +1,13 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Message<T> {
     pub status: i32,
     pub message: Vec<T>,
     pub token: Option<String>,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Serialize)]
 pub struct LoginUserData {
     #[serde(rename = "yhdm")]
     pub userid: String,
@@ -32,7 +32,7 @@ pub struct LoginUserData {
     pub id: String,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Serialize)]
 pub struct CourseGrade {
     #[serde(rename = "bh")]
     pub class_id: String,
@@ -78,7 +78,7 @@ pub struct CourseGrade {
     pub grade_points: f32,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Serialize)]
 pub struct StudentPoint {
     // #[serde(rename = "nj")]
     // pub grade: String,
@@ -116,7 +116,7 @@ pub struct StudentPoint {
     // pub average_grade: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Term {
     #[serde(rename = "xq")]
     pub term: String,
@@ -126,7 +126,7 @@ pub struct Term {
 pub mod calendar {
     use std::collections::HashMap;
 
-    use serde::Deserialize;
+    use serde::{Deserialize, Serialize};
     use serde_json::Value;
 
     use crate::extension::calendar::RawCourse;
@@ -139,7 +139,7 @@ pub mod calendar {
     /// If you want the other fields, just create a new struct yourself.
     ///
     /// There is no need to use a proc-macros here, IMO, enumerate each field is better.
-    #[derive(Debug, Deserialize, Clone)]
+    #[derive(Debug, Deserialize, Serialize, Clone)]
     pub struct SerdeRowCourses {
         #[serde(flatten)]
         pub fields: HashMap<String, Value>,

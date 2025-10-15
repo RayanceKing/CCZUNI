@@ -1,11 +1,11 @@
 use std::collections::HashMap;
 
 use reqwest::Response;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize}; // <-- Import Serialize
 
 use crate::base::client::Property;
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Deserialize, Debug, Clone, Serialize)] // <-- Add Serialize here
 pub struct ElinkLoginInfo {
     pub username: String,
     pub sid: String,

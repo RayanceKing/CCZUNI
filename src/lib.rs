@@ -1,5 +1,6 @@
 pub mod base;
 pub mod impls;
+pub mod ffi;
 #[cfg(feature = "internals")]
 pub mod internals;
 #[cfg(not(feature = "internals"))]
